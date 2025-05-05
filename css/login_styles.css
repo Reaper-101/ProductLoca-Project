@@ -1,0 +1,298 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Moving Background Gradient Animation */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Background Particle Animation */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+.particle {
+    position: absolute;
+    background: rgba(255, 140, 0, 0.3);
+    border-radius: 50%;
+    animation: drift 12s infinite linear;
+}
+@keyframes drift {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(100vw, -100vh);
+        opacity: 0.3;
+    }
+}
+
+/* Login Container */
+.login-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeInSlideUp 1s ease-out forwards;
+}
+
+/* Logo Styles */
+.logo-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+    animation: logoGlow 2s ease-in-out infinite alternate, logoScale 1s ease-out forwards;
+}
+.logo-container img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.logo-container img:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Logo Animations */
+@keyframes logoGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
+    }
+}
+@keyframes logoScale {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Fade-In and Slide-Up Animation for Login Container */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Title */
+.login-container h2 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
+.login-container p {
+    color: #ddd;
+    font-size: 14px;
+    margin-bottom: 30px;
+    animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+/* Form Styles */
+.login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    animation: slideInFromLeft 1s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+.login-form label {
+    display: block;
+    color: #ddd;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+}
+
+/* Login Button with Ripple Effect */
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: #ff8c00;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease, transform 0.1s ease;
+    animation: slideInFromRight 1s ease-out forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+}
+.login-form button:hover {
+    background: #e07b00;
+    transform: scale(1.02);
+}
+.login-form button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.login-form button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 10.01%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    top: 0;
+    left: 0;
+}
+.login-form button:hover::after {
+    transform: scale(4);
+}
+
+/* Countdown and Locked Message */
+#countdown, #lockedMessage {
+    display: none;
+    color: #ff5555;
+    font-size: 14px;
+    margin-top: 15px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Back to Dashboard Link */
+.login-links {
+    margin-top: 20px;
+    animation: slideInFromBottom 1s ease-out forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
+}
+.login-links a {
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 14px;
+}
+.login-links a:hover {
+    color: #e07b00;
+    text-decoration: underline;
+}
+
+/* Sliding Animations for Form Elements */
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes slideInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes slideInFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+        margin: 20px;
+    }
+    .login-container h2 {
+        font-size: 24px;
+    }
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        font-size: 14px;
+    }
+    .login-form button {
+        font-size: 14px;
+    }
+    .logo-container img {
+        width: 60px;
+        height: 60px;
+    }
+}

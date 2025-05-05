@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Main Background */
+        .main {
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%), url(image/dstore.jpg);
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Content Container */
+        .content {
+            width: 400px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Heading Styling */
+        .content h1 {
+            font-family: 'Times New Roman', serif;
+            font-size: 32px;
+            color: #ff7200;
+            margin-bottom: 20px;
+        }
+
+        .content span {
+            color: #ff7200;
+            font-size: 40px;
+        }
+
+        /* Paragraph Styling */
+        .content .par {
+            font-family: Arial, sans-serif;
+            letter-spacing: 1.2px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        /* Form Styling */
+        .form {
+            width: 100%;
+        }
+
+        .form h2 {
+            font-family: Arial, sans-serif;
+            color: #ff7200;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Input Fields */
+        .form input {
+            width: 100%;
+            height: 35px;
+            background: transparent;
+            border-bottom: 1px solid #ff7200;
+            color: #fff;
+            font-size: 15px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .form input::placeholder {
+            color: #fff;
+        }
+
+        .form input:focus {
+            outline: none;
+            border-bottom: 1px solid #fff;
+        }
+
+        /* Select Field */
+        .form select {
+            width: 100%;
+            height: 35px;
+            background: transparent;
+            color: #fff;
+            border-bottom: 1px solid #ff7200;
+            padding-left: 10px;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .form select:focus {
+            outline: none;
+            border-bottom: 1px solid #fff;
+        }
+
+        /* Button Styling */
+        .btnn {
+            width: 100%;
+            height: 40px;
+            background: #ff7200;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.4s ease;
+            margin-top: 20px;
+        }
+
+        .btnn:hover {
+            background-color: #fff;
+            color: #ff7200;
+        }
+
+        /* Link Styling */
+        .link {
+            margin-top: 20px;
+        }
+
+        .link a {
+            color: #ff7200;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+    <script>
+        // JavaScript function to show/hide business ID field based on user type selection
+        function toggleBusinessField() {
+            var userType = document.getElementById('user_type').value;
+            var businessField = document.getElementById('business_id_field');
+
+            if (userType === 'admin' || userType === 'store_manager') {
+                businessField.style.display = 'block';
+            } else {
+                businessField.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="main">
+        <div class="content">
+            <h1>Register <span>Here</span></h1>
+            <p class="par">Please fill out the form below to create an account.</p>
+
+            <div class="form">
+                <h2>Register</h2>
+                <form action="register.php" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="contact_number" name="contact_number" placeholder="Contact Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="user_type" name="user_type" onchange="toggleBusinessField()" required>
+                            <option value="">Select user type</option>
+                            <option value="admin">Admin</option>
+                            <option value="store_manager">Store Manager</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Business ID field, hidden by default, shown when user type is admin or store manager -->
+                    <div class="form-group" id="business_id_field" style="display: none;">
+                        <input type="text" id="business_id" name="business_id" placeholder="Business ID">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btnn" type="submit">Register</button>
+                    </div>
+                </form>
+                <div class="link">
+                    <p>Already have an account? <a href="login.html">Login here</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
